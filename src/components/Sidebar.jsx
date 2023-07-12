@@ -1,9 +1,17 @@
-import { Flex, Box, Image } from "@chakra-ui/react";
+import { Flex, Spacer, Box, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Admin from "./Admin";
 
 export default function Sidebar() {
   return (
-    <Flex w="200px" h="100vh" bg="green.500" p="2%" flexDirection="column">
+    <Flex
+      w="200px"
+      h="100vh"
+      bg="green.500"
+      p="2%"
+      flexDirection="column"
+      justifyContent="space-between"
+    >
       <Image src="public/img/logoTienda.png" />
       <Box
         p={2}
@@ -37,6 +45,10 @@ export default function Sidebar() {
       >
         <Link to="/orders">Orders</Link>
       </Box>
+      <Spacer />
+      <Flex h="20%">
+        <Admin />
+      </Flex>
     </Flex>
   );
 }
