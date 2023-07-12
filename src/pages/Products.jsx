@@ -12,6 +12,7 @@ import {
   Select,
   Heading,
 } from "@chakra-ui/react";
+import ProductList from "../components/ProductList";
 
 const url = "http://localhost:8080/product";
 
@@ -21,20 +22,31 @@ export default function Products() {
   const [price, setPrice] = useState("");
   const [section, setSection] = useState("");
   const [description, setDescription] = useState("");
+  const [productList, setProductList] = useState([]);
 
   const addProduct = async (e) => {
     e.preventDefault();
-    await axios.post(url, {
-      name,
-      img,
-      section,
-      description,
-      price,
-    });
+    try {
+      const res = await axios.post(url, {
+        name,
+        img,
+        section,
+        description,
+        price,
+      });
+      setProductList((prev) => [...prev, res.data]);
+      setName("");
+      setImg("");
+      setSection("");
+      setDescription("");
+      setPrice("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center">
+    <Flex w="full" alignItems="center" justifyContent="space-evenly">
       <Box
         minW={{ base: "90%", md: "468px" }}
         border="2px"
@@ -62,6 +74,7 @@ export default function Products() {
                 type="text"
                 size="sm"
                 onChange={(e) => setName(e.target.value)}
+                value={name}
               />
             </FormControl>
             <FormControl>
@@ -70,6 +83,7 @@ export default function Products() {
                 type="text"
                 size="sm"
                 onChange={(e) => setImg(e.target.value)}
+                value={img}
               />
             </FormControl>
             <FormControl>
@@ -77,6 +91,7 @@ export default function Products() {
               <Select
                 placeholder="Seleccione una categoria"
                 onChange={(e) => setSection(e.target.value)}
+                value={section}
               >
                 <option value="Gorras">Gorras</option>
                 <option value="Remeras">Remeras</option>
@@ -89,6 +104,7 @@ export default function Products() {
                 type="number"
                 size="sm"
                 onChange={(e) => setPrice(e.target.value)}
+                value={price}
               />
             </FormControl>
             <FormControl>
@@ -96,6 +112,7 @@ export default function Products() {
               <Textarea
                 placeholder="Escriba una breve descripcion"
                 onChange={(e) => setDescription(e.target.value)}
+                value={description}
               />
             </FormControl>
             <Button
@@ -112,6 +129,7 @@ export default function Products() {
           </Stack>
         </form>
       </Box>
+      <ProductList productList={productList} />
     </Flex>
   );
 }
