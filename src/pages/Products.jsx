@@ -1,3 +1,5 @@
+import { useState } from "react";
+import axios from "axios";
 import {
   Flex,
   Box,
@@ -8,13 +10,37 @@ import {
   Text,
   Button,
   Textarea,
+  Select,
 } from "@chakra-ui/react";
 
+const url = "http://localhost:8080/product";
+
 export default function Products() {
+  const [name, setName] = useState("");
+  const [img, setImg] = useState("");
+  const [price, setPrice] = useState("");
+  const [section, setSection] = useState("");
+  const [description, setDescription] = useState("");
+
+  const addProduct = async (e) => {
+    e.preventDefault();
+    await axios.post(url, {
+      name,
+      img,
+      section,
+      description,
+      price,
+    });
+  };
+
   return (
     <Flex w="full" alignItems="center" justifyContent="center">
       <Box minW={{ base: "90%", md: "468px" }}>
-        <form onSubmit={() => {}}>
+        <form
+          onSubmit={(e) => {
+            addProduct(e);
+          }}
+        >
           <Stack
             spacing={4}
             p="1rem"
@@ -25,23 +51,45 @@ export default function Products() {
             <Text>Cargar Productos</Text>
             <FormControl>
               <FormLabel>Nombre</FormLabel>
-              <Input type="text" size="sm" />
+              <Input
+                type="text"
+                size="sm"
+                onChange={(e) => setName(e.target.value)}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Imagen</FormLabel>
-              <Input type="text" size="sm" />
+              <Input
+                type="text"
+                size="sm"
+                onChange={(e) => setImg(e.target.value)}
+              />
             </FormControl>
             <FormControl>
-              <FormLabel>Seccion</FormLabel>
-              <Input type="text" size="sm" />
+              <FormLabel>Categoria</FormLabel>
+              <Select
+                placeholder="Seleccione una categoria"
+                onChange={(e) => setSection(e.target.value)}
+              >
+                <option value="Gorras">Gorras</option>
+                <option value="Remeras">Remeras</option>
+                <option value="Accesorios">Accesorios</option>
+              </Select>
             </FormControl>
             <FormControl>
               <FormLabel>Precio</FormLabel>
-              <Input type="number" size="sm" />
+              <Input
+                type="number"
+                size="sm"
+                onChange={(e) => setPrice(e.target.value)}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Descripcion</FormLabel>
-              <Textarea placeholder="Escriba una breve descripcion" />
+              <Textarea
+                placeholder="Escriba una breve descripcion"
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </FormControl>
             <Button
               borderRadius={0}
