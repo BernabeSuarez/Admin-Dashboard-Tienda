@@ -12,7 +12,7 @@ import {
   Select,
   Heading,
 } from "@chakra-ui/react";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/products/ProductList";
 
 const url = "http://localhost:8080/product";
 
@@ -100,6 +100,7 @@ export default function Products() {
             </FormControl>
             <FormControl>
               <FormLabel>Precio</FormLabel>
+
               <Input
                 type="number"
                 size="sm"
