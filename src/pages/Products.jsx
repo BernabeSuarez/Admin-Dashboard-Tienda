@@ -7,10 +7,10 @@ import {
   FormControl,
   Input,
   FormLabel,
-  Text,
   Button,
   Textarea,
   Select,
+  Heading,
 } from "@chakra-ui/react";
 
 const url = "http://localhost:8080/product";
@@ -35,7 +35,12 @@ export default function Products() {
 
   return (
     <Flex w="full" alignItems="center" justifyContent="center">
-      <Box minW={{ base: "90%", md: "468px" }}>
+      <Box
+        minW={{ base: "90%", md: "468px" }}
+        border="2px"
+        borderColor="pallete.cyan.300"
+        borderRadius={8}
+      >
         <form
           onSubmit={(e) => {
             addProduct(e);
@@ -48,7 +53,9 @@ export default function Products() {
             boxShadow="2xl"
             borderRadius={8}
           >
-            <Text>Cargar Productos</Text>
+            <Heading as="h2" size="md">
+              Cargar Productos
+            </Heading>
             <FormControl>
               <FormLabel>Nombre</FormLabel>
               <Input
@@ -95,10 +102,10 @@ export default function Products() {
               borderRadius={0}
               type="submit"
               variant="solid"
-              bg="black"
-              color="white"
+              bg="pallete.black"
+              color="pallete.white"
               width="full"
-              _hover={{ bg: "gray.600" }}
+              _hover={{ bg: "pallete.cyan.300", color: "pallete.black" }}
             >
               Cargar
             </Button>

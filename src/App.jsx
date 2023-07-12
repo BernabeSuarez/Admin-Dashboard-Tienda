@@ -18,7 +18,7 @@ function App() {
         <BrowserRouter>
           <Flex flexDirection="row">
             <Sidebar />
-            <Flex p={2} bg="darkgray" w="100%">
+            <Flex p={2} bg="darkgrey" w="100%">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
