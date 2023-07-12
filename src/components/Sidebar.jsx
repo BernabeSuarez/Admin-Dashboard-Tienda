@@ -1,9 +1,18 @@
 import { Flex, Spacer, Box, Image } from "@chakra-ui/react";
-import { Menu, MenuButton, MenuList, MenuItem, Portal } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Portal,
+  Button,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Admin from "./Admin";
+import { useAuth } from "../context/useAuth";
 
 export default function Sidebar() {
+  const { logout } = useAuth();
   return (
     <Flex
       w="200px"
@@ -129,8 +138,9 @@ export default function Sidebar() {
         </Menu>
       </Box>
       <Spacer />
-      <Flex h="20%">
+      <Flex h="20%" flexDirection="column">
         <Admin />
+        <Button onClick={() => logout()}>Salir</Button>
       </Flex>
     </Flex>
   );
