@@ -41,7 +41,7 @@ export default function ProductList(productList) {
         </Thead>
         <Tbody>
           {data.map((item) => (
-            <Tr key={item.id}>
+            <Tr key={item._id}>
               <Td>{item.section}</Td>
               <Td>{item.name}</Td>
               <Td isNumeric>${item.price}</Td>
