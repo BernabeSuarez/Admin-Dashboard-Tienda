@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import ProductList from "../components/products/ProductList";
 
-const url = "http://localhost:8080/product";
+const url = "https://backend-tienda-nucba.vercel.app/product";
 
 export default function Products() {
   const [name, setName] = useState("");
@@ -52,6 +52,7 @@ export default function Products() {
         border="2px"
         borderColor="pallete.cyan.300"
         borderRadius={8}
+        color="black"
       >
         <form
           onSubmit={(e) => {

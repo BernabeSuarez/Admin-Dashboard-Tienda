@@ -4,47 +4,29 @@ import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
-const loginUrl = "http://localhost:8080/signin";
-const checkUrl = "http://localhost:8080/checktoken";
+const loginUrl = "https://backend-tienda-nucba.vercel.app/signin";
+const checkUrl = "https://backend-tienda-nucba.vercel.app/checktoken";
+
+//expires cookie test
+const tiempo = new Date(new Date().getTime() + 1 * 60 * 1000);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const checkToken = async () => {
     axios.get(checkUrl);
   };
 
   useEffect(() => {
-    async function checkToken() {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuth(false);
-        setLoading(false);
-        return setUser(null);
-      }
-      try {
-        const res = await checkToken(cookies.token);
-        console.log(res);
-        if (!res.data) {
-          setIsAuth(false);
-          setLoading(false);
-          return;
-        }
-        setIsAuth(true);
-        setUser(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setIsAuth(false);
-        setUser(null);
-        setLoading(false);
-      }
+    const cookies = Cookies.get("TOKEN");
+    if (!cookies) {
+      setUser(null);
+      setIsAuth(false);
     }
+  }, [user]);
 
-    checkToken();
-  }, []);
+  checkToken();
 
   const loginUser = async (email, password) => {
     try {
@@ -52,15 +34,17 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
+
       setUser(res.data);
       setIsAuth(true);
+      Cookies.set("TOKEN", res.data.token, { expires: tiempo });
     } catch (error) {
       console.log(error);
     }
   };
 
   const logout = () => {
-    Cookies.remove("token");
+    Cookies.remove("TOKEN");
     setUser(null);
     setIsAuth(false);
   };
@@ -73,7 +57,6 @@ export const AuthProvider = ({ children }) => {
         logout,
         isAuth,
         checkToken,
-        loading,
       }}
     >
       {children}

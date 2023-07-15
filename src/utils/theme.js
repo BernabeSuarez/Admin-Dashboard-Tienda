@@ -1,12 +1,6 @@
 import { extendTheme } from '@chakra-ui/react'
 
 
-
-const config = {
-    initialColorMode: 'system',
-    useSystemColorMode: true,
-}
-
 const colors = {
     pallete: {
         black: "#000",
@@ -25,4 +19,4 @@ const colors = {
 }
 
 
-export const theme = extendTheme({ config, colors, })
+export const theme = extendTheme({ colors, })
