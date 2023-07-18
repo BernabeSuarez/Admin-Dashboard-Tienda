@@ -14,11 +14,11 @@ import {
 } from "@chakra-ui/react";
 import ProductList from "../components/products/ProductList";
 
-const url = "https://backend-tienda-nucba.vercel.app/product";
+const url = "https://backend-tienda-nucba.onrender.com/product";
 
 export default function Products() {
   const [name, setName] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
   const [price, setPrice] = useState("");
   const [section, setSection] = useState("");
   const [description, setDescription] = useState("");
@@ -26,23 +26,23 @@ export default function Products() {
 
   const addProduct = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(url, {
-        name,
-        img,
-        section,
-        description,
-        price,
-      });
-      setProductList((prev) => [...prev, res.data]);
-      setName("");
-      setImg("");
-      setSection("");
-      setDescription("");
-      setPrice("");
-    } catch (error) {
-      console.log(error);
-    }
+
+    const form = new FormData();
+    form.append("name", name);
+    form.append("img", img);
+    form.append("price", price);
+    form.append("section", section);
+    form.append("description", description);
+
+    const res = await axios.post(url, form);
+    console.log(res.data);
+
+    setProductList((prev) => [...prev, res.data]);
+    setName("");
+    setImg("");
+    setSection("");
+    setDescription("");
+    setPrice("");
   };
 
   return (
@@ -58,6 +58,7 @@ export default function Products() {
           onSubmit={(e) => {
             addProduct(e);
           }}
+          encType="multipart/form-data"
         >
           <Stack
             spacing={4}
@@ -80,12 +81,7 @@ export default function Products() {
             </FormControl>
             <FormControl>
               <FormLabel>Imagen</FormLabel>
-              <Input
-                type="text"
-                size="sm"
-                onChange={(e) => setImg(e.target.value)}
-                value={img}
-              />
+              <Input type="file" onChange={(e) => setImg(e.target.files[0])} />
             </FormControl>
             <FormControl>
               <FormLabel>Categoria</FormLabel>

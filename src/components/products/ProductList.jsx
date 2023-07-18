@@ -11,7 +11,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-const productsUrl = "https://backend-tienda-nucba.vercel.app/products";
+const productsUrl = "https://backend-tienda-nucba.onrender.com/products";
 
 export default function ProductList(productList) {
   const [data, setData] = useState([]);

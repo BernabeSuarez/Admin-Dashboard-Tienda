@@ -4,10 +4,10 @@ import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
-const loginUrl = "https://backend-tienda-nucba.vercel.app/signin";
-const checkUrl = "https://backend-tienda-nucba.vercel.app/checktoken";
+const loginUrl = "https://backend-tienda-nucba.onrender.com/signin";
+const checkUrl = "https://backend-tienda-nucba.onrender.com/checktoken";
 
-//expires cookie test
+//expires cookie test cambiar a mas tiempo
 const tiempo = new Date(new Date().getTime() + 1 * 60 * 1000);
 
 export const AuthProvider = ({ children }) => {
@@ -25,8 +25,6 @@ export const AuthProvider = ({ children }) => {
       setIsAuth(false);
     }
   }, [user]);
-
-  checkToken();
 
   const loginUser = async (email, password) => {
     try {
