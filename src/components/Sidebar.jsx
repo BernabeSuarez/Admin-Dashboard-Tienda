@@ -30,7 +30,7 @@ export default function Sidebar() {
         transition="all 0.2s"
         borderRadius={8}
       >
-        <Link to="/">HOME</Link>
+        <Link to="/">Home</Link>
       </Box>
       <Box
         p={2}
@@ -47,21 +47,14 @@ export default function Sidebar() {
                 color="white"
                 _hover={{ bg: "#086F83", color: "white" }}
               >
-                <Link to="/Products">Agregar Productos</Link>
+                <Link to="/products/addProduct">Agregar Productos</Link>
               </MenuItem>
               <MenuItem
                 bg="pallete.gray.300"
                 color="white"
                 _hover={{ bg: "#086F83", color: "white" }}
               >
-                <Link to="/Products">Editar Productos</Link>
-              </MenuItem>
-              <MenuItem
-                bg="pallete.gray.300"
-                color="white"
-                _hover={{ bg: "#086F83", color: "white" }}
-              >
-                <Link to="/Products">Eliminar Productos</Link>
+                <Link to="/products/productsList">Lista de Productos</Link>
               </MenuItem>
             </MenuList>
           </Portal>
@@ -82,21 +75,14 @@ export default function Sidebar() {
                 color="white"
                 _hover={{ bg: "#086F83", color: "white" }}
               >
-                <Link to="/users">Agregar Usuarios</Link>
+                <Link to="/users/addUser">Agregar Usuarios</Link>
               </MenuItem>
               <MenuItem
                 bg="pallete.gray.300"
                 color="white"
                 _hover={{ bg: "#086F83", color: "white" }}
               >
-                <Link to="/users">Editar Usuarios</Link>
-              </MenuItem>
-              <MenuItem
-                bg="pallete.gray.300"
-                color="white"
-                _hover={{ bg: "#086F83", color: "white" }}
-              >
-                <Link to="/users">Eliminar Usuarios</Link>
+                <Link to="/users/userList">Lista de Usuarios</Link>
               </MenuItem>
             </MenuList>
           </Portal>
@@ -117,21 +103,7 @@ export default function Sidebar() {
                 color="white"
                 _hover={{ bg: "#086F83", color: "white" }}
               >
-                <Link to="/orders">Agregar Ordenes</Link>
-              </MenuItem>
-              <MenuItem
-                bg="pallete.gray.300"
-                color="white"
-                _hover={{ bg: "#086F83", color: "white" }}
-              >
-                <Link to="/orders">Editar Ordenes</Link>
-              </MenuItem>
-              <MenuItem
-                bg="pallete.gray.300"
-                color="white"
-                _hover={{ bg: "#086F83", color: "white" }}
-              >
-                <Link to="/orders">Eliminar Ordenes</Link>
+                <Link to="/orders">Lista de Ordenes</Link>
               </MenuItem>
             </MenuList>
           </Portal>
