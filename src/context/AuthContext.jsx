@@ -4,8 +4,8 @@ import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
-const loginUrl = "https://backend-tienda-nucba.onrender.com/signin";
-const checkUrl = "https://backend-tienda-nucba.onrender.com/checktoken";
+const loginUrl = "https://back-tienda-ts.onrender.com/api/signin";
+const checkUrl = "https://back-tienda-ts.onrender.com/api/checktoken";
 
 //expires cookie test cambiar a mas tiempo
 const tiempo = new Date(new Date().getTime() + 1 * 60 * 1000);

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 
-const productsUrl = "https://backend-tienda-nucba.onrender.com/products";
+const productsUrl = "https://back-tienda-ts.onrender.com/api/products";
 
 export default function ProductList(productList) {
   const [data, setData] = useState([]);

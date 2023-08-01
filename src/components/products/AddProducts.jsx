@@ -13,7 +13,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-const url = "https://backend-tienda-nucba.onrender.com/product";
+const url = "https://back-tienda-ts.onrender.com/api/product";
 
 export default function Products() {
   const [name, setName] = useState("");
@@ -91,7 +91,8 @@ export default function Products() {
               >
                 <option value="Gorras">Gorras</option>
                 <option value="Remeras">Remeras</option>
-                <option value="Accesorios">Accesorios</option>
+                <option value="Calzado">Calzado</option>
+                <option value="Buzos">Buzos</option>
               </Select>
             </FormControl>
             <FormControl>
